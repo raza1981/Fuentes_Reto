@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MiProyecto</title>
+    
+    <%#<%= csrf_meta_tags %>
+    <%#<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>   
+     
+  </head>
+
+  <body>
+  <div class="container">
+
+        <nav class="navbar navbar-expand-sm bg-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><%= link_to('Reportes', '/reports') %></li>
+                        <li class="nav-item"><%= link_to('Tipos de Reportes', '/report_types') %></li>
+                        <li class="nav-item"><%= link_to('Mensajes', '/messages') %></li>
+                        <li class="nav-item"><%= link_to('Tipos de Mensaje', '/message_types') %></li>
+                        <li class="nav-item"><%= link_to('Contactos', '/contacts') %></li>
+                        <li class="nav-item"><%= link_to('Roles', '/rols') %></li>
+                    </ul>
+        </nav>
+        <a class="waves-effect waves-light btn">button</a>
+        
+        <ul class="nav justify-content-end">
+            <%- if user_signed_in? %> <%# validamos si hay usuario registrado%>
+                <li class="nav-item">
+                    <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+                </li>
+            <% else %> <%# si no lo esta mostramos los botones de inicio y registro%>
+                <li class="nav-item">
+                    <%= link_to 'Iniciar Sesión', new_user_session_path %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to 'Registrar', new_user_registration_path %>
+                </li>
+            <% end %>
+        </ul>
+
+        <%= yield %>
+    </div>
+    <div>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+    </div>
+  </body>
+</html>
